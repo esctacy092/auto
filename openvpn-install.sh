@@ -157,7 +157,7 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
 		# 2) 
 		# protocol=tcp
 		# ;;
-	esac
+	# esac
 	echo
 	echo "What port should OpenVPN listen on?"
 	# read -p "Port [1194]: " port
