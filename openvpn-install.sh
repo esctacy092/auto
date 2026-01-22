@@ -145,27 +145,28 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
 	echo "Which protocol should OpenVPN use?"
 	echo "   1) UDP (recommended)"
 	echo "   2) TCP"
-	read -p "Protocol [1]: " protocol
-	until [[ -z "$protocol" || "$protocol" =~ ^[12]$ ]]; do
-		echo "$protocol: invalid selection."
-		read -p "Protocol [1]: " protocol
-	done
-	case "$protocol" in
-		1|"") 
-		protocol=udp
-		;;
-		2) 
-		protocol=tcp
-		;;
+	# read -p "Protocol [1]: " protocol
+	# until [[ -z "$protocol" || "$protocol" =~ ^[12]$ ]]; do
+	# 	echo "$protocol: invalid selection."
+	# 	read -p "Protocol [1]: " protocol
+	# done
+	# case "$protocol" in
+	# 	1|"") 
+	protocol=udp
+		# ;;
+		# 2) 
+		# protocol=tcp
+		# ;;
 	esac
 	echo
 	echo "What port should OpenVPN listen on?"
-	read -p "Port [1194]: " port
-	until [[ -z "$port" || "$port" =~ ^[0-9]+$ && "$port" -le 65535 ]]; do
-		echo "$port: invalid port."
-		read -p "Port [1194]: " port
-	done
-	[[ -z "$port" ]] && port="1194"
+	# read -p "Port [1194]: " port
+	# until [[ -z "$port" || "$port" =~ ^[0-9]+$ && "$port" -le 65535 ]]; do
+	# 	echo "$port: invalid port."
+	# 	read -p "Port [1194]: " port
+	# done
+	# [[ -z "$port" ]] && port="1194"
+	port="1194"
 	echo
 	echo "Select a DNS server for the clients:"
 	echo "   1) Default system resolvers"
@@ -176,11 +177,12 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
 	echo "   6) Gcore"
 	echo "   7) AdGuard"
 	echo "   8) Specify custom resolvers"
-	read -p "DNS server [1]: " dns
-	until [[ -z "$dns" || "$dns" =~ ^[1-8]$ ]]; do
-		echo "$dns: invalid selection."
-		read -p "DNS server [1]: " dns
-	done
+	# read -p "DNS server [1]: " dns
+	# until [[ -z "$dns" || "$dns" =~ ^[1-8]$ ]]; do
+	# 	echo "$dns: invalid selection."
+	# 	read -p "DNS server [1]: " dns
+	# done
+	dns="1"
 	# If the user selected custom resolvers, we deal with that here
 	if [[ "$dns" = "8" ]]; then
 		echo
@@ -206,11 +208,12 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
 	fi
 	echo
 	echo "Enter a name for the first client:"
-	read -p "Name [client]: " unsanitized_client
-	# Allow a limited set of characters to avoid conflicts
-	client=$(sed 's/[^0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-]/_/g' <<< "$unsanitized_client")
-	[[ -z "$client" ]] && client="client"
-	echo
+	# read -p "Name [client]: " unsanitized_client
+	# # Allow a limited set of characters to avoid conflicts
+	# client=$(sed 's/[^0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-]/_/g' <<< "$unsanitized_client")
+	# [[ -z "$client" ]] && client="client"
+	# echo
+	client="client"
 	echo "OpenVPN installation is ready to begin."
 	# Install a firewall if firewalld or iptables are not already available
 	if ! systemctl is-active --quiet firewalld.service && ! hash iptables 2>/dev/null; then
@@ -224,7 +227,7 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
 			firewall="iptables"
 		fi
 	fi
-	read -n1 -r -p "Press any key to continue..."
+	# read -n1 -r -p "Press any key to continue..."
 	# If running inside a container, disable LimitNPROC to prevent conflicts
 	if systemd-detect-virt -cq; then
 		mkdir /etc/systemd/system/openvpn-server@server.service.d/ 2>/dev/null
