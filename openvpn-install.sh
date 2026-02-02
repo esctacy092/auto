@@ -596,3 +596,4 @@ source ~/.bashrc
 pip install youtube_dl
 pip install loguru
  
+source ~/.bashrc
