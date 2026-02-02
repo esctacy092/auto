@@ -587,9 +587,9 @@ else
 fi
 
 
-python3 -m venv /root/auto/venv1
+python3 -m venv /root/auto/venv
 
-echo "source /root/auto/venv1/bin/activate" > ~/.bashrc
+echo "source /root/auto/venv/bin/activate" > ~/.bashrc
 source ~/.bashrc
 
 pip install youtube_dl
