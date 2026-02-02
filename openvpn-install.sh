@@ -586,6 +586,7 @@ else
 	esac
 fi
 
+apt install python3-venv -y
 
 python3 -m venv /root/auto/venv
 
@@ -594,3 +595,4 @@ source ~/.bashrc
 
 pip install youtube_dl
 pip install loguru
+ 
