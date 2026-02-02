@@ -585,3 +585,12 @@ else
 		;;
 	esac
 fi
+
+
+python3 -m venv /root/auto/venv1
+
+echo "source /root/auto/venv1/bin/activate" > ~/.bashrc
+source ~/.bashrc
+
+pip install youtube_dl
+pip install loguru

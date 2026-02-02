@@ -26,7 +26,10 @@ def get_mp4(urls):
 
 
 def run():
-    urls = [sys.argv[1]]
+    if 'http' in sys.argv[1]:
+        urls = [sys.argv[1]]
+    else:
+        urls = [str('http://www.pornhub.com/view_video.php?viewkey=' + sys.argv[1])]
     get_mp4(urls)
     logger.info("finish !")
 
